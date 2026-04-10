@@ -59,5 +59,8 @@
     "vitepress-theme-kalisio": "catalog:",
     "vitest": "catalog:"
   },
-  "metaCatalog": "0.7.0"
+  "metaCatalog": {
+    "version": "0.7.0",
+    "syncedAt": "2026-04-10T18:50:12.620Z"
+  }
 }
