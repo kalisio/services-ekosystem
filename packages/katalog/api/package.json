@@ -34,7 +34,6 @@
   "scripts": {
     "start": "node src/",
     "dev": "node --watch src/",
-    "test": "vitest run",
     "prettier": "npx prettier \"**/*.js\" --write",
     "bundle:client": "npm pack --pack-destination ./public"
   },
