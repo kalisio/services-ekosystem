@@ -4,7 +4,6 @@ import configuration from '@feathersjs/configuration'
 import { koa, rest, bodyParser, errorHandler, parseAuthentication, cors } from '@feathersjs/koa'
 
 import { configurationValidator } from './configuration.js'
-import { logError } from './hooks/log-error.js'
 import { services } from './services/index.js'
 
 const app = koa(feathers())
@@ -26,7 +25,7 @@ app.configure(services)
 // Register hooks that run on all service methods
 app.hooks({
   around: {
-    all: [logError]
+    all: []
   },
   before: {},
   after: {},
