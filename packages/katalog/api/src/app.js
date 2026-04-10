@@ -21,8 +21,6 @@ app.configure(configuration())
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-// Host the public folder
-
 // Configure services and real-time functionality
 app.configure(rest())
 

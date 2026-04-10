@@ -8,6 +8,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 export default mergeConfig(baseConfig, defineConfig({
   root: __dirname,
   test: {
-    name: 'katalog'
+    name: 'katalog',
+    env: {
+      NODE_CONFIG_DIR: path.join(__dirname, 'api/config'),
+      NODE_ENV: 'test'
+    }
   }
 }))

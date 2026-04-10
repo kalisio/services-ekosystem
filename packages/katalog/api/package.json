@@ -7,9 +7,6 @@
   "keywords": [
     "feathers"
   ],
-  "author": {},
-  "contributors": [],
-  "bugs": {},
   "engines": {
     "node": ">= 20.19.0"
   },
