@@ -1,0 +1,63 @@
+{
+  "name": "services-ekosystem",
+  "description": "A suite of cloud services for geospatial platforms",
+  "type": "module",
+  "packageManager": "pnpm@10.1.0",
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:katalog": "pnpm --filter @kalisio/katalog build",
+    "changeset": "changeset",
+    "changeset:release": "pnpm build && changeset publish",
+    "changeset:status": "changeset status",
+    "changeset:version": "changeset version",
+    "docs:build": "vitepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "lint": "pnpm -r lint",
+    "lint:katalog": "pnpm --filter @kalisio/katalog lint",
+    "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
+    "prepare": "husky",
+    "pretest": "mkdir -p coverage",
+    "test": "pnpm -r test --coverage",
+    "test:katalog": "pnpm --filter @kalisio/katalog test --coverage"
+  },
+  "keywords": [
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kalisio/services-ekosystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/services-ekosystem/issues"
+  },
+  "homepage": "git://github.com/kalisio/services-ekosystem#readme",
+  "dependencies": {
+    "keycloak-js": "catalog:",
+    "lodash": "catalog:",
+    "moment": "catalog:",
+    "quasar": "catalog:"
+  },
+  "devDependencies": {
+    "@changesets/cli": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "cross-env": "catalog:",
+    "husky": "catalog:",
+    "lcov-result-merger": "catalog:",
+    "lint-staged": "catalog:",
+    "mermaid": "catalog:",
+    "standard": "catalog:",
+    "vite": "catalog:",
+    "vite-bundle-visualizer": "catalog:",
+    "vitepress": "catalog:",
+    "vitepress-plugin-mermaid": "catalog:",
+    "vitepress-theme-kalisio": "catalog:",
+    "vitest": "catalog:"
+  },
+  "metaCatalog": "0.7.0"
+}
