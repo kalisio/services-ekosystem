@@ -12,7 +12,7 @@ _A suite of cloud services for geospatial platforms_
 
 ## Documentation
 
-Detailed documentation is available at the following [link](https://github.com/kalisio/services-ekosystem).
+Detailed documentation is available at the following [link](https://kalisio.github.io/services-ekosystem).
 
 ## License
 
