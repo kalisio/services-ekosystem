@@ -11,7 +11,7 @@
   "contributors": [],
   "bugs": {},
   "engines": {
-    "node": ">= 20.20.2"
+    "node": ">= 20.19.0"
   },
   "feathers": {
     "language": "js",
@@ -52,7 +52,6 @@
     "@feathersjs/mongodb": "catalog:",
     "@feathersjs/socketio": "catalog:",
     "@kalisio/feathers-distributed": "catalog:",
-    "compression": "catalog:",
     "mongodb": "catalog:",
     "winston": "catalog:"
   },
