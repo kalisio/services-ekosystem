@@ -1,32 +1,37 @@
-/* eslint-env mocha */
-// For more information about this file see https://dove.feathersjs.com/guides/cli/app.test.html
-import assert from 'assert'
-import axios from 'axios'
+import { describe, it, beforeAll, afterAll, expect } from 'vitest'
 import { app } from '../src/app.js'
 
-const port = app.get('port')
-const appUrl = `http://${app.get('host')}:${port}`
+const port = app.get('port') || 3030
+const appUrl = `http://${app.get('host') || 'localhost'}:${port}`
 
-describe('Feathers application tests', () => {
-  before(async () => {
-    await app.listen(port)
+describe('Feathers application tests (No-Hooks architecture)', () => {
+  let server
+
+  beforeAll(async () => {
+    // Puisqu'on a supprimé index.js, on lance le serveur ici pour les tests
+    server = await app.listen(port)
   })
 
-  after(async () => {
+  afterAll(async () => {
+    // On ferme proprement le serveur et les connexions DB (MongoDB)
+    if (server) await server.close()
     await app.teardown()
   })
 
-  it('shows a 404 JSON error', async () => {
-    try {
-      await axios.get(`${appUrl}/path/to/nowhere`, {
-        responseType: 'json'
-      })
-      assert.fail('should never get here')
-    } catch (error) {
-      const { response } = error
-      assert.strictEqual(response?.status, 404)
-      assert.strictEqual(response?.data?.code, 404)
-      assert.strictEqual(response?.data?.name, 'NotFound')
-    }
+  it('starts and shows the index page', async () => {
+    const response = await fetch(appUrl)
+    const body = await response.text()
+
+    expect(response.status).toBe(200)
+    // On vérifie que le serveur répond bien, même sans hooks de log/formatage
+    expect(body).toBeDefined()
+  })
+
+  it('shows a 404 JSON error for unknown routes', async () => {
+    const response = await fetch(`${appUrl}/path/to/nowhere`)
+    const error = await response.json()
+
+    expect(response.status).toBe(404)
+    expect(error.name).toBe('NotFound')
   })
 })

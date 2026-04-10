@@ -1,26 +1,38 @@
 // For more information about this file see https://dove.feathersjs.com/guides/cli/application.html
 import { feathers } from '@feathersjs/feathers'
+import express, {
+  rest,
+  json,
+  urlencoded,
+  cors,
+  notFound,
+  errorHandler
+} from '@feathersjs/express'
 import configuration from '@feathersjs/configuration'
-import { koa, rest, bodyParser, errorHandler, parseAuthentication, cors } from '@feathersjs/koa'
 
-import { configurationValidator } from './configuration.js'
+import { logger } from './logger.js'
+import { mongodb } from './mongodb.js'
 import { services } from './services/index.js'
 
-const app = koa(feathers())
+const app = express(feathers())
 
-// Load our app configuration (see config/ folder)
-app.configure(configuration(configurationValidator))
-
-// Set up Koa middleware
+// Load app configuration
+app.configure(configuration())
 app.use(cors())
-app.use(errorHandler())
-app.use(parseAuthentication())
-app.use(bodyParser())
+app.use(json())
+app.use(urlencoded({ extended: true }))
+// Host the public folder
 
-// Configure services and transports
+// Configure services and real-time functionality
 app.configure(rest())
 
+app.configure(mongodb)
+
 app.configure(services)
+
+// Configure a middleware for 404s and the error handler
+app.use(notFound())
+app.use(errorHandler({ logger }))
 
 // Register hooks that run on all service methods
 app.hooks({

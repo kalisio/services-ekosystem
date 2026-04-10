@@ -6,5 +6,12 @@ import { baseConfig } from '../../vite.base-config'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default mergeConfig(baseConfig, defineConfig({
-  root: __dirname
+  root: __dirname,
+  test: {
+    exclude: [
+      'api/**',
+      'node_modules/**',
+      'dist/**'
+    ]
+  }
 }))
