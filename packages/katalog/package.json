@@ -80,6 +80,6 @@
     "winston": "catalog:"
   },
   "devDependencies": {
-
+    "@feathersjs/rest-client": "catalog:"
   }
 }

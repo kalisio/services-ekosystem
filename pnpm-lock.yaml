@@ -72,9 +72,6 @@ catalogs:
     mongodb:
       specifier: ~6.20.0
       version: 6.20.0
-    prettier:
-      specifier: ~3.8.1
-      version: 3.8.2
     quasar:
       specifier: ~2.18.7
       version: 2.18.7
@@ -205,18 +202,6 @@ importers:
       '@feathersjs/rest-client':
         specifier: 'catalog:'
         version: 5.0.44
-      '@vitest/coverage-v8':
-        specifier: 'catalog:'
-        version: 4.1.4(vitest@4.1.4)
-      cross-env:
-        specifier: 'catalog:'
-        version: 10.1.0
-      prettier:
-        specifier: 'catalog:'
-        version: 3.8.2
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.4(@vitest/coverage-v8@4.1.4)(vite@7.3.2(tsx@4.21.0)(yaml@2.8.3))
 
 packages:
 
@@ -3227,11 +3212,6 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  prettier@3.8.2:
-    resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
-    engines: {node: '>=14'}
     hasBin: true
 
   prop-types@15.8.1:
@@ -7509,8 +7489,6 @@ snapshots:
   prelude-ls@1.2.1: {}
 
   prettier@2.8.8: {}
-
-  prettier@3.8.2: {}
 
   prop-types@15.8.1:
     dependencies:
