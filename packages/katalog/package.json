@@ -30,7 +30,6 @@
   },
   "files": [
     "dist",
-    "lib/client.js",
     "lib/**/*.d.ts",
     "lib/**/*.shared.js"
   ],
@@ -79,7 +78,5 @@
     "mongodb": "catalog:",
     "winston": "catalog:"
   },
-  "devDependencies": {
-    "@feathersjs/rest-client": "catalog:"
-  }
+  "devDependencies": {}
 }

@@ -33,9 +33,6 @@ catalogs:
     '@feathersjs/mongodb':
       specifier: ~5.0.8
       version: 5.0.44
-    '@feathersjs/rest-client':
-      specifier: ~5.0.8
-      version: 5.0.44
     '@feathersjs/socketio':
       specifier: ~5.0.8
       version: 5.0.44
@@ -198,10 +195,6 @@ importers:
       winston:
         specifier: 'catalog:'
         version: 3.19.0
-    devDependencies:
-      '@feathersjs/rest-client':
-        specifier: 'catalog:'
-        version: 5.0.44
 
 packages:
 
@@ -759,10 +752,6 @@ packages:
     peerDependencies:
       mongodb: ^6.19.0
 
-  '@feathersjs/rest-client@5.0.44':
-    resolution: {integrity: sha512-3YhMFYjY3sL7IzBz3MATdnA+4hCFTpYEVZB7Fnio5V7ZM7ZvN1vEf4dg1Y/d91oNSzDt0trxQyIU+IbGAzkWOA==}
-    engines: {node: '>= 12'}
-
   '@feathersjs/schema@5.0.44':
     resolution: {integrity: sha512-1xk7+Zs17MQEgfPDipf9ribG4hF+YdYxfO3Dijn1GSk1x285HVqgSH4MQLUpY+z6gfBn5/jE3S7+yDQ4ITmrXw==}
     engines: {node: '>= 12'}
@@ -1022,9 +1011,6 @@ packages:
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
-  '@types/cookiejar@2.1.5':
-    resolution: {integrity: sha512-he+DHOWReW0nghN24E1WUqM0efK4kI9oTqDm6XmK8ZPe2djZ90BSNdGnIyCLzCPw7/pogPlGbzI2wHGGmi4O/Q==}
-
   '@types/cors@2.8.19':
     resolution: {integrity: sha512-mFNylyeyqN93lfe/9CSxOGREz8cpzAhH+E93xJ4xWQf62V8sQ/24reV2nyzUWM6H6Xji+GGHpkbLe7pVoUEskg==}
 
@@ -1082,9 +1068,6 @@ packages:
   '@types/mdurl@2.0.0':
     resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
 
-  '@types/methods@1.1.4':
-    resolution: {integrity: sha512-ymXWVrDiCxTBE3+RIrrP533E70eA+9qu7zdWoHuOmGujkYtzf4HQF96b8nwHLqhuf4ykX61IGRIB38CC6/sImQ==}
-
   '@types/mime@1.3.5':
     resolution: {integrity: sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==}
 
@@ -1108,9 +1091,6 @@ packages:
 
   '@types/serve-static@1.15.10':
     resolution: {integrity: sha512-tRs1dB+g8Itk72rlSI2ZrW6vZg0YrLI81iQSTkMmOqnqCaNr/8Ek4VwWcN5vZgCYWbg/JJSGBlUaYGAOP73qBw==}
-
-  '@types/superagent@8.1.9':
-    resolution: {integrity: sha512-pTVjI73witn+9ILmoJdajHGW2jkSaOzhiFYF1Rd3EQ94kymLqB9PjD9ISg7WaALC7+dCHT0FGe9T2LktLq/3GQ==}
 
   '@types/triple-beam@1.3.5':
     resolution: {integrity: sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==}
@@ -3236,10 +3216,6 @@ packages:
     resolution: {integrity: sha512-V/yCWTTF7VJ9hIh18Ugr2zhJMP01MY7c5kh4J870L7imm6/DIzBsNLTXzMwUA3yZ5b/KBqLx8Kp3uRvd7xSe3Q==}
     engines: {node: '>=0.6'}
 
-  qs@6.15.1:
-    resolution: {integrity: sha512-6YHEFRL9mfgcAvql/XhwTvf5jKcOiiupt2FiJxHkiX1z4j7WL8J/jRHYLluORvc1XxB5rV20KoeK00gVJamspg==}
-    engines: {node: '>=0.6'}
-
   quansync@0.2.11:
     resolution: {integrity: sha512-AifT7QEbW9Nri4tAwR5M/uzpBuqfZf+zwaEM/QkzEjj7NBuFD2rBuy0K3dE+8wltbezDV7JMA0WfnCPYRSYbXA==}
 
@@ -4625,14 +4601,6 @@ snapshots:
       '@feathersjs/feathers': 5.0.44
       mongodb: 6.20.0
 
-  '@feathersjs/rest-client@5.0.44':
-    dependencies:
-      '@feathersjs/commons': 5.0.44
-      '@feathersjs/errors': 5.0.44
-      '@feathersjs/feathers': 5.0.44
-      '@types/superagent': 8.1.9
-      qs: 6.15.1
-
   '@feathersjs/schema@5.0.44(typescript@6.0.2)':
     dependencies:
       '@feathersjs/adapter-commons': 5.0.44
@@ -4902,8 +4870,6 @@ snapshots:
     dependencies:
       '@types/node': 12.20.55
 
-  '@types/cookiejar@2.1.5': {}
-
   '@types/cors@2.8.19':
     dependencies:
       '@types/node': 12.20.55
@@ -4970,8 +4936,6 @@ snapshots:
 
   '@types/mdurl@2.0.0': {}
 
-  '@types/methods@1.1.4': {}
-
   '@types/mime@1.3.5': {}
 
   '@types/ms@2.1.0': {}
@@ -4996,13 +4960,6 @@ snapshots:
       '@types/http-errors': 2.0.5
       '@types/node': 12.20.55
       '@types/send': 0.17.6
-
-  '@types/superagent@8.1.9':
-    dependencies:
-      '@types/cookiejar': 2.1.5
-      '@types/methods': 1.1.4
-      '@types/node': 12.20.55
-      form-data: 4.0.5
 
   '@types/triple-beam@1.3.5': {}
 
@@ -5349,7 +5306,8 @@ snapshots:
 
   async@3.2.6: {}
 
-  asynckit@0.4.0: {}
+  asynckit@0.4.0:
+    optional: true
 
   available-typed-arrays@1.0.7:
     dependencies:
@@ -5505,6 +5463,7 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
+    optional: true
 
   comma-separated-tokens@2.0.3: {}
 
@@ -5836,7 +5795,8 @@ snapshots:
     dependencies:
       robust-predicates: 3.0.3
 
-  delayed-stream@1.0.0: {}
+  delayed-stream@1.0.0:
+    optional: true
 
   denque@2.1.0: {}
 
@@ -6417,6 +6377,7 @@ snapshots:
       es-set-tostringtag: 2.1.0
       hasown: 2.0.2
       mime-types: 2.1.35
+    optional: true
 
   forwarded@0.2.0: {}
 
@@ -7509,10 +7470,6 @@ snapshots:
   punycode@2.3.1: {}
 
   qs@6.14.2:
-    dependencies:
-      side-channel: 1.1.0
-
-  qs@6.15.1:
     dependencies:
       side-channel: 1.1.0
 
