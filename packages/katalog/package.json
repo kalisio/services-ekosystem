@@ -40,11 +40,9 @@
   },
   "scripts": {
     "build": "vite build",
+    "dev": "node --watch src/",
     "lint": "standard --fix",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "start": "node src/main.js",
-    "dev": "node --watch src/"
+    "test": "vitest run --coverage"
   },
   "keywords": [
     "kalisio"
