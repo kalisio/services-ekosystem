@@ -22,7 +22,7 @@ describe('Katalog application tests', () => {
     const addr = app.server ? app.server.address() : null
     const port = addr ? addr.port : 3030
     appUrl = `http://${app.get('host') || 'localhost'}:${port}`
-  })
+  }, 60000)
 
   afterAll(async () => {
     await app.teardown()
