@@ -40,7 +40,7 @@
   },
   "scripts": {
     "build": "vite build",
-    "dev": "node --watch src/",
+    "dev": "node --watch src/main.js",
     "lint": "standard --fix",
     "test": "vitest run --coverage"
   },
