@@ -32,7 +32,7 @@
   "main": "src/",
   "type": "module",
   "scripts": {
-    "start": "node src/",
+    "start": "node src/main.js",
     "dev": "node --watch src/",
     "prettier": "npx prettier \"**/*.js\" --write",
     "bundle:client": "npm pack --pack-destination ./public"
