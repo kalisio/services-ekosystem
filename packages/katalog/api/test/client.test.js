@@ -11,9 +11,12 @@ describe('client tests', () => {
   beforeAll(async () => {
     server = createServer()
     app = server.app
+    app.set('port', 0)
+
     await server.run()
 
-    const port = app.get('port') || 3030
+    const addr = app.server ? app.server.address() : null
+    const port = addr ? addr.port : 3030
     appUrl = `http://${app.get('host') || 'localhost'}:${port}`
   })
 

@@ -1,8 +1,10 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { createRequire } from 'node:module'
+import { fileURLToPath } from 'node:url'
 import { logger } from '../../logger.js'
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const require = createRequire(import.meta.url)
 
 export const createDefaultCatalogLayers = async (app) => {
@@ -17,7 +19,7 @@ export const createDefaultCatalogLayers = async (app) => {
     s3Url: app.get('s3Url') || ''
   }
 
-  const layersDir = path.resolve(process.cwd(), 'config/layers')
+  const layersDir = path.resolve(__dirname, '../../../config/layers')
   let defaultLayers = []
 
   try {
