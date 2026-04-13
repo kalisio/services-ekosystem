@@ -4,3 +4,4 @@
 
 This repository contains the following packages:
 
+- **[@kalisio/katalog](../packages/katalog)**
