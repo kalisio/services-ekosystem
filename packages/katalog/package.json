@@ -46,8 +46,7 @@
     "test:coverage": "vitest run --coverage",
     "start": "node src/main.js",
     "dev": "node --watch src/",
-    "prettier": "npx prettier \"**/*.js\" --write",
-    "bundle:client": "npm pack --pack-destination ./public"
+    "prettier": "npx prettier \"**/*.js\" --write"
   },
   "keywords": [
     "kalisio"
@@ -82,10 +81,6 @@
     "winston": "catalog:"
   },
   "devDependencies": {
-    "@feathersjs/rest-client": "catalog:",
-    "@vitest/coverage-v8": "catalog:",
-    "cross-env": "catalog:",
-    "prettier": "catalog:",
-    "vitest": "catalog:"
+
   }
 }
