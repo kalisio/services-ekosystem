@@ -45,8 +45,7 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "start": "node src/main.js",
-    "dev": "node --watch src/",
-    "prettier": "npx prettier \"**/*.js\" --write"
+    "dev": "node --watch src/"
   },
   "keywords": [
     "kalisio"
