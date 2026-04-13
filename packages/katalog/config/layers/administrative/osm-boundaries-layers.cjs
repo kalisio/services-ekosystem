@@ -77,7 +77,7 @@ module.exports = function ({ wmtsUrl, tmsUrl, wmsUrl, wcsUrl, k2Url, s3Url }) {
     ],
     leaflet: {
       type: 'geoJson',
-      source: '/api/osm-boundaries',
+      source: '/katalog/osm-boundaries',
       realtime: true,
       tiled: true,
       minZoom: 7,

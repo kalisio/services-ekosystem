@@ -10,7 +10,7 @@ export default mergeConfig(baseConfig, defineConfig({
   test: {
     name: 'katalog',
     env: {
-      NODE_CONFIG_DIR: path.join(__dirname, 'api/config'),
+      NODE_CONFIG_DIR: path.join(__dirname, 'config'),
       NODE_ENV: 'test'
     }
   }

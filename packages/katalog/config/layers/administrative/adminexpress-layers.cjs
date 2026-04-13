@@ -118,7 +118,7 @@ module.exports = function ({ wmtsUrl, tmsUrl, wmsUrl, wcsUrl, k2Url, s3Url }) {
     }],
     leaflet: {
       type: 'geoJson',
-      source: '/api/admin-express',
+      source: '/katalog/admin-express',
       realtime: true,
       tiled: true,
       maxZoom: 21,
