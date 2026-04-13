@@ -1,24 +1,34 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import rest from '@feathersjs/rest-client'
-import { app } from '../src/app.js'
+import { createServer } from '../src/server.js'
 import { createClient } from '../src/client.js'
 
-const port = app.get('port') || 3030
-const appUrl = `http://${app.get('host') || 'localhost'}:${port}`
+let server
+let app
+let appUrl
 
 describe('client tests', () => {
-  // On remplace .axios(axios) par .fetch(fetch)
-  // Node 20 fournit l'objet global fetch automatiquement
-  const client = createClient(rest(appUrl).fetch(fetch))
+  beforeAll(async () => {
+    server = createServer()
+    app = server.app
+    await server.run()
+
+    const port = app.get('port') || 3030
+    appUrl = `http://${app.get('host') || 'localhost'}:${port}`
+  })
+
+  afterAll(async () => {
+    await app.teardown()
+  })
 
   it('initialized the client', () => {
-    // expect remplace assert.ok
+    const client = createClient(rest(appUrl).fetch(fetch))
     expect(client).toBeDefined()
   })
 
   it('can access services via the client', () => {
-    // Vérification rapide que le client a bien accès aux services
-    const katalogService = client.service('katalog')
-    expect(katalogService).toBeDefined()
+    const client = createClient(rest(appUrl).fetch(fetch))
+    const catalogService = client.service('catalog')
+    expect(catalogService).toBeDefined()
   })
 })
