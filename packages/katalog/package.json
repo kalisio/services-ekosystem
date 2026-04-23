@@ -42,6 +42,7 @@
     "build": "vite build",
     "dev": "node --watch src/main.js",
     "lint": "standard --fix",
+    "link:kdk-map-api": "rm -f node_modules/@kalisio/kdk-map-api && ln -s $(realpath ../../../kdk-ekosystem/packages/kdk-map-api) node_modules/@kalisio/kdk-map-api",
     "test": "vitest run --coverage"
   },
   "keywords": [
