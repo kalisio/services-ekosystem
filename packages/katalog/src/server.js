@@ -12,7 +12,7 @@ import configuration from '@feathersjs/configuration'
 import { logger } from './logger.js'
 import { mongodb } from './mongodb.js'
 import { services } from './services/index.js'
-import { createDefaultCatalogLayers } from './services/catalog/catalog.init.js'
+import { createDefaultCatalogLayers } from '@kalisio/kdk-map-api'
 
 export class Server {
   constructor () {
@@ -24,10 +24,7 @@ export class Server {
     this.app.use(urlencoded({ extended: true }))
 
     this.app.configure(rest())
-
     this.app.configure(mongodb)
-
-    this.app.configure(services)
 
     this.app.use(notFound())
     this.app.use(errorHandler({ logger }))
@@ -38,21 +35,13 @@ export class Server {
       after: {},
       error: {}
     })
-
-    this.app.hooks({
-      setup: [
-        async (context) => {
-          await createDefaultCatalogLayers(context.app)
-        }
-      ],
-      teardown: []
-    })
   }
 
   async run () {
     const port = this.app.get('port')
     const host = this.app.get('host')
-
+    await services(this.app)
+    await createDefaultCatalogLayers.call(this.app)
     await this.app.listen(port)
     logger.info(`Feathers app listening on http://${host}:${port}`)
   }
