@@ -1,5 +1,4 @@
 import { createCatalogService, hooks } from '@kalisio/kdk-map-api'
-import { MongoDBService } from '@feathersjs/mongodb'
 
 export const services = async app => {
   app.getService = (name) => {
@@ -8,16 +7,6 @@ export const services = async app => {
     } catch {
       return null
     }
-  }
-
-  app.createService = async (name, options) => {
-    const db = options.db || await app.get('mongodbClient')
-    options.Model = await db.collection(name)
-    options.operators = (options.operators || []).concat(['$exists', '$near', '$geoNear', '$maxDistance', '$minDistance', '$geoWithin', '$centerSphere', '$geometry', '$search', '$aggregate', '$group', '$groupBy', '$regex', '$options'])
-    app.use(name, new MongoDBService(options))
-    const service = app.service(name)
-    service.options = options
-    return service
   }
 
   if (!app.logger) {

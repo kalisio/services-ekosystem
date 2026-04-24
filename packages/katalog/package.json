@@ -64,18 +64,15 @@
   },
   "homepage": "https://github.com/kalisio/services-ekosystem/tree/main/packages/katalog",
   "dependencies": {
-    "@feathersjs/adapter-commons": "catalog:",
     "@feathersjs/authentication": "catalog:",
-    "@feathersjs/authentication-client": "catalog:",
     "@feathersjs/configuration": "catalog:",
     "@feathersjs/errors": "catalog:",
     "@feathersjs/express": "catalog:",
     "@feathersjs/feathers": "catalog:",
-    "@feathersjs/mongodb": "catalog:",
     "@feathersjs/socketio": "catalog:",
     "@kalisio/feathers-distributed": "catalog:",
+    "@kalisio/kdk-core-api": "link:../../../kdk-ekosystem/packages/kdk-core-api",
     "@kalisio/kdk-map-api": "link:../../../kdk-ekosystem/packages/kdk-map-api",
-    "mongodb": "catalog:",
     "winston": "catalog:"
   },
   "devDependencies": {}

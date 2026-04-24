@@ -1,31 +1,14 @@
-import { feathers } from '@feathersjs/feathers'
-import express, {
-  rest,
-  json,
-  urlencoded,
-  cors,
-  notFound,
-  errorHandler
-} from '@feathersjs/express'
-import configuration from '@feathersjs/configuration'
-
+import { kdk } from '@kalisio/kdk-core-api'
+import express from '@feathersjs/express'
 import { logger } from './logger.js'
-import { mongodb } from './mongodb.js'
 import { services } from './services/index.js'
 import { loadLayers } from './layers.js'
 import { createDefaultCatalogLayers, createCatalogFeaturesServices } from '@kalisio/kdk-map-api'
+const { notFound, errorHandler } = express
 
 export class Server {
   constructor () {
-    this.app = express(feathers())
-
-    this.app.configure(configuration())
-    this.app.use(cors())
-    this.app.use(json())
-    this.app.use(urlencoded({ extended: true }))
-
-    this.app.configure(rest())
-    this.app.configure(mongodb)
+    this.app = kdk()
 
     this.app.use(notFound())
     this.app.use(errorHandler({ logger }))
@@ -41,6 +24,8 @@ export class Server {
   async run () {
     const port = this.app.get('port')
     const host = this.app.get('host')
+
+    await this.app.db.connect()
 
     const layers = await loadLayers(this.app)
     this.app.set('catalog', Object.assign({}, this.app.get('catalog'), { layers }))
