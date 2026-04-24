@@ -74,6 +74,7 @@
     "@feathersjs/mongodb": "catalog:",
     "@feathersjs/socketio": "catalog:",
     "@kalisio/feathers-distributed": "catalog:",
+    "@kalisio/kdk-map-api": "link:../../../kdk-ekosystem/packages/kdk-map-api",
     "mongodb": "catalog:",
     "winston": "catalog:"
   },

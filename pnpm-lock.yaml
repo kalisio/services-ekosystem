@@ -189,6 +189,9 @@ importers:
       '@kalisio/feathers-distributed':
         specifier: 'catalog:'
         version: 2.4.0
+      '@kalisio/kdk-map-api':
+        specifier: link:../../../kdk-ekosystem/packages/kdk-map-api
+        version: link:../../../kdk-ekosystem/packages/kdk-map-api
       mongodb:
         specifier: 'catalog:'
         version: 6.20.0
