@@ -12,9 +12,19 @@ export const mongodb = (app) => {
 
   try {
     const database = new URL(connection).pathname.substring(1)
-    const mongoClient = MongoClient.connect(connection).then((client) => client.db(database))
+    const clientPromise = MongoClient.connect(connection)
 
-    app.set('mongodbClient', mongoClient)
+    app.db = {
+      db: (name) => {
+        return {
+          collection: (colName) => {
+            return clientPromise.then(client => client.db(name || database).collection(colName))
+          }
+        }
+      }
+    }
+
+    app.set('mongodbClient', clientPromise.then(client => client.db(database)))
   } catch (error) {
     console.error('ERROR: Invalid MongoDB connection string:', connection)
     throw error
