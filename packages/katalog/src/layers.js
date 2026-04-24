@@ -1,36 +1,39 @@
-import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createRequire } from 'node:module'
+import { globSync } from 'glob'
 
+const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const kdkMapApiLayersLoader = path.resolve(__dirname, '../node_modules/@kalisio/kdk-map-api/src/config/layers.cjs')
+const getLayers = require(kdkMapApiLayersLoader)
+
+const kargoDomain = (process.env.SUBDOMAIN ? process.env.SUBDOMAIN : 'test.kalisio.xyz')
+const wmtsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/wmts/1.0.0' : 'https://mapcache.' + kargoDomain + '/mapcache/wmts/1.0.0')
+const tmsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/tms/1.0.0' : 'https://mapcache.' + kargoDomain + '/mapcache/tms/1.0.0')
+const wmsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/wms' : 'https://mapcache.' + kargoDomain + '/mapcache')
+const wcsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/wcs' : 'https://mapserver.' + kargoDomain + '/cgi-bin/ows')
+let k2Url = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/k2' : 'https://k2.' + kargoDomain)
+let s3Url = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/s3' : 'https://s3.eu-central-1.amazonaws.com')
+
+if (process.env.K2_URL) {
+  k2Url = process.env.K2_URL
+  console.log(`Using custom K2 URL ${k2Url}`)
+}
+if (process.env.S3_URL) {
+  s3Url = process.env.S3_URL
+  console.log(`Using custom S3 URL ${s3Url}`)
+}
 
 export async function loadLayers (app) {
   const layersDir = path.resolve(__dirname, '../config/layers')
-  const layers = []
 
-  async function scanDir (dir) {
-    const files = fs.readdirSync(dir, { withFileTypes: true })
-    for (const file of files) {
-      const fullPath = path.join(dir, file.name)
-      if (file.isDirectory()) {
-        await scanDir(fullPath)
-      } else if (file.name.endsWith('.cjs')) {
-        const module = await import(fullPath)
-        let content = module.default || module
-        if (typeof content === 'function') {
-          content = content(app.get('catalog') || {})
-        }
-        if (Array.isArray(content)) {
-          layers.push(...content)
-        } else {
-          layers.push(content)
-        }
-      }
-    }
-  }
+  const layerFiles = globSync(path.join(layersDir, '**/*.cjs').replace(/\\/g, '/'))
 
-  if (fs.existsSync(layersDir)) {
-    await scanDir(layersDir)
-  }
+  const context = Object.assign({ wmtsUrl, tmsUrl, wmsUrl, wcsUrl, k2Url, s3Url }, app.get('catalog') || {})
+
+  const layers = getLayers(layerFiles, context)
+
   return layers
 }
