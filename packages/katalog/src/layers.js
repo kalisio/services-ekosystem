@@ -1,13 +1,11 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createRequire } from 'node:module'
 import { globSync } from 'glob'
+import { kdkMapApiLayersLoader } from '@kalisio/kdk-map-api'
 
-const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const kdkMapApiLayersLoader = path.resolve(__dirname, '../node_modules/@kalisio/kdk-map-api/src/config/layers.cjs')
-const getLayers = require(kdkMapApiLayersLoader)
+const getLayers = kdkMapApiLayersLoader
 
 const kargoDomain = (process.env.SUBDOMAIN ? process.env.SUBDOMAIN : 'test.kalisio.xyz')
 const wmtsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/wmts/1.0.0' : 'https://mapcache.' + kargoDomain + '/mapcache/wmts/1.0.0')
