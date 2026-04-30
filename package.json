@@ -10,8 +10,8 @@
     "changeset:release": "pnpm build && changeset publish",
     "changeset:status": "changeset status",
     "changeset:version": "changeset version",
-    "docs:build": "vitepress build docs",
-    "docs:dev": "vitepress dev docs",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:dev": "pnpm --filter docs run dev",
     "inspect": "pnpm knip",
     "lint": "pnpm -r lint",
     "lint:katalog": "pnpm --filter @kalisio/katalog lint",
@@ -38,12 +38,6 @@
     "url": "https://github.com/kalisio/services-ekosystem/issues"
   },
   "homepage": "git://github.com/kalisio/services-ekosystem#readme",
-  "dependencies": {
-    "keycloak-js": "catalog:",
-    "lodash": "catalog:",
-    "moment": "catalog:",
-    "quasar": "catalog:"
-  },
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
@@ -51,13 +45,9 @@
     "husky": "catalog:",
     "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
-    "mermaid": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
     "vite-bundle-visualizer": "catalog:",
-    "vitepress": "catalog:",
-    "vitepress-plugin-mermaid": "catalog:",
-    "vitepress-theme-kalisio": "catalog:",
     "knip": "catalog:",
     "vitest": "catalog:"
   },
