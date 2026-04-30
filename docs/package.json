@@ -1,12 +1,19 @@
 {
   "name": "docs",
   "description": "A suite of cloud services for geospatial platforms - Documentation",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "private": true,
   "scripts": {
     "build": "vitepress build",
     "dev": "vitepress dev"
   },
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
   "dependencies": {
     "keycloak-js": "catalog:",
     "lodash": "catalog:",
