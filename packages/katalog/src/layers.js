@@ -1,11 +1,13 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { globSync } from 'glob'
-import { kdkMapApiLayersLoader } from '@kalisio/kdk-map-api'
+import { kdkMapApiLayersLoader, kdkMapApiCategoriesLoader, kdkMapApiSublegendsLoader } from '@kalisio/kdk-map-api'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const getLayers = kdkMapApiLayersLoader
+const getCategories = kdkMapApiCategoriesLoader
+const getSublegends = kdkMapApiSublegendsLoader
 
 const kargoDomain = (process.env.SUBDOMAIN ? process.env.SUBDOMAIN : 'test.kalisio.xyz')
 const wmtsUrl = (process.env.API_GATEWAY_URL ? process.env.API_GATEWAY_URL + '/wmts/1.0.0' : 'https://mapcache.' + kargoDomain + '/mapcache/wmts/1.0.0')
@@ -34,4 +36,17 @@ export async function loadLayers (app) {
   const layers = getLayers(layerFiles, context)
 
   return layers
+}
+
+export async function loadCategories (app) {
+  const categoriesDir = path.resolve(__dirname, '../config/categories')
+  const categoryFiles = globSync(path.join(categoriesDir, '**/*.cjs').replace(/\\/g, '/'))
+  const context = Object.assign({ domain: kargoDomain, wmtsUrl, tmsUrl, wmsUrl, wcsUrl, k2Url, s3Url }, app.get('catalog') || {})
+  return getCategories(categoryFiles, context)
+}
+
+export async function loadSublegends (app) {
+  const sublegendsDir = path.resolve(__dirname, '../config/sublegends')
+  const sublegendFiles = globSync(path.join(sublegendsDir, '**/*.cjs').replace(/\\/g, '/'))
+  return getSublegends(sublegendFiles)
 }
