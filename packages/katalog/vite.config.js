@@ -9,8 +9,8 @@ export default mergeConfig(baseConfig, defineConfig({
   root: __dirname,
   resolve: {
     alias: {
-      '@Kalisio/kdk-core-api': path.resolve(__dirname, 'node_modules/@kalisio/kdk-core-api/src'),
-      '@Kalisio/kdk-map-api': path.resolve(__dirname, 'node_modules/@kalisio/kdk-map-api/src')
+      '@kalisio/kdk-core-api': path.resolve(__dirname, 'node_modules/@kalisio/kdk-core-api/src'),
+      '@kalisio/kdk-map-api': path.resolve(__dirname, 'node_modules/@kalisio/kdk-map-api/src')
     }
   }
 }))
