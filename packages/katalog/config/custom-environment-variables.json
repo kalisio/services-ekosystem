@@ -6,5 +6,19 @@
   "host": "HOSTNAME",
   "authentication": {
     "secret": "FEATHERS_SECRET"
+  },
+  "distribution": {
+    "publicationDelay": {
+      "__name": "PUBLICATION_DELAY",
+      "__format": "number"
+    },
+    "heartbeatInterval": {
+      "__name": "HEARTBEAT_INTERVAL",
+      "__format": "number"
+    },
+    "timeout": {
+      "__name": "DISTRIBUTION_TIMEOUT",
+      "__format": "number"
+    }
   }
 }
