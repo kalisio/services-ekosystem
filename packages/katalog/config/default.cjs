@@ -1,7 +1,7 @@
 const express = require('@feathersjs/express')
 
 module.exports = {
-  apiPath: '',
+  apiPath: '/api',
   host: 'localhost',
   port: 3030,
   public: './public/',
@@ -17,12 +17,12 @@ module.exports = {
     url: 'mongodb://127.0.0.1:27017/katalog'
   },
   distribution: {
-    key: 'kalisio',
+    key: 'katalog',
     authentication: false,
     publicationDelay: 5000,
     heartbeatInterval: 10000,
     timeout: 30000,
-    services: ['catalog'],
+    services: (service) => true,
     distributedMethods: ['find', 'get', 'create', 'update', 'patch', 'remove'],
     distributedEvents: ['created', 'updated', 'patched', 'removed'],
     middlewares: { after: express.errorHandler() }

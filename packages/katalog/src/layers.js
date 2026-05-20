@@ -27,6 +27,8 @@ if (process.env.S3_URL) {
 }
 
 export async function loadLayers (app) {
+  if (!process.env.LAYERS_FILTER) process.env.LAYERS_FILTER = '*'
+
   const layersDir = path.resolve(__dirname, '../config/layers')
 
   const layerFiles = globSync(path.join(layersDir, '**/*.cjs').replace(/\\/g, '/'))

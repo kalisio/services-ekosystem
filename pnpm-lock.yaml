@@ -36,6 +36,12 @@ catalogs:
     cross-env:
       specifier: ~10.1.0
       version: 10.1.0
+    debug:
+      specifier: ~4.4.3
+      version: 4.4.3
+    feathers-hooks-common:
+      specifier: ~8.2.1
+      version: 8.2.1
     glob:
       specifier: ~13.0.1
       version: 13.0.6
@@ -185,6 +191,12 @@ importers:
       '@kalisio/kdk-map-api':
         specifier: link:../../../kdk-ekosystem/packages/kdk-map-api
         version: link:../../../kdk-ekosystem/packages/kdk-map-api
+      debug:
+        specifier: 'catalog:'
+        version: 4.4.3
+      feathers-hooks-common:
+        specifier: 'catalog:'
+        version: 8.2.1(@feathersjs/feathers@5.0.44)
       glob:
         specifier: 'catalog:'
         version: 13.0.6
@@ -2391,6 +2403,12 @@ packages:
       picomatch:
         optional: true
 
+  feathers-hooks-common@8.2.1:
+    resolution: {integrity: sha512-t3gLAaTY5ufnAoKczLCNXJddq/L9ORrvxAlfuU2Azgoi0b6X3t0Y91l1JCJAvixzxxwLJmgdnKpFX32+CvEn0A==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      '@feathersjs/feathers': ^5.0.0
+
   fecha@4.2.3:
     resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
 
@@ -2555,6 +2573,10 @@ packages:
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
+
+  graphql@16.14.0:
+    resolution: {integrity: sha512-BBvQ/406p+4CZbTpCbVPSxfzrZrbnuWSP1ELYgyS6B+hNeKzgrdB4JczCa5VZUBQrDa9hUngm0KnexY6pJRN5Q==}
+    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
   has-bigints@1.1.0:
     resolution: {integrity: sha512-R3pbpkcIqv2Pm3dUwgjclDRVmWpTJW2DcMzcIhEXEx1oh/CEMObMm3KLmRJOdvhM7o4uQBnwr8pzRK2sJWIqfg==}
@@ -3214,6 +3236,10 @@ packages:
   negotiator@0.6.4:
     resolution: {integrity: sha512-myRT3DiWPHqho5PrJaIRyaMv2kgYf0mUVgBNOYMuCH5Ki1yEiQaf/ZJuQ62nvpc44wL5WDbTX7yGJi1Neevw8w==}
     engines: {node: '>= 0.6'}
+
+  neotraverse@0.6.18:
+    resolution: {integrity: sha512-Z4SmBUweYa09+o6pG+eASabEpP6QkQ70yHj351pQoEXIs8uHbaU2DWVmzBANKgflPa47A50PtB2+NgRpQvr7vA==}
+    engines: {node: '>= 10'}
 
   node-exports-info@1.6.0:
     resolution: {integrity: sha512-pyFS63ptit/P5WqUkt+UUfe+4oevH+bFeIiPPdfb0pFeYEu/1ELnJu5l+5EcTKYL5M7zaAa7S8ddywgXypqKCw==}
@@ -3978,11 +4004,12 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uuid@9.0.1:
@@ -6693,6 +6720,18 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.4
 
+  feathers-hooks-common@8.2.1(@feathersjs/feathers@5.0.44):
+    dependencies:
+      '@feathersjs/errors': 5.0.44
+      '@feathersjs/feathers': 5.0.44
+      ajv: 6.14.0
+      debug: 4.4.3
+      graphql: 16.14.0
+      lodash: 4.18.1
+      neotraverse: 0.6.18
+    transitivePeerDependencies:
+      - supports-color
+
   fecha@4.2.3: {}
 
   file-entry-cache@6.0.1:
@@ -6879,6 +6918,8 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   graphemer@1.4.0: {}
+
+  graphql@16.14.0: {}
 
   has-bigints@1.1.0: {}
 
@@ -7660,6 +7701,8 @@ snapshots:
   negotiator@0.6.3: {}
 
   negotiator@0.6.4: {}
+
+  neotraverse@0.6.18: {}
 
   node-exports-info@1.6.0:
     dependencies:
