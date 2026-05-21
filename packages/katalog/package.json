@@ -2,6 +2,7 @@
   "name": "@kalisio/katalog",
   "description": "Catalog service for KDK-based applications",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.1.0",
   "type": "module",
   "main": "src/",
   "engines": {
