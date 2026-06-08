@@ -1,0 +1,84 @@
+import _ from 'lodash'
+import cors from 'cors'
+import express from 'express'
+import { Buffer } from 'buffer'
+import { logger } from './logger.js'
+import { capture } from './capture.js'
+import { validateGeoJson } from './utils.geojson.js'
+
+const port = process.env.PORT || 3000
+const bodyLimit = process.env.BODY_LIMIT || '100kb'
+const delay = process.env.DELAY || 2000
+const pageSetupDelay = process.env.PAGE_SETUP_DELAY || 2000
+const uploadFileDelay = process.env.UPLOAD_FILE_DELAY || 2000
+const networkdIdleTimeout = process.env.NETWORK_IDLE_TIMEOUT || 100000
+const appUrl = process.env.APP_URL
+const appJwt = process.env.APP_JWT
+const appName = process.env.APP_NAME
+
+// layers validator middleware
+const layersValidator = function (req, res, next) {
+  const layers = _.get(req.body, 'layers')
+  if (layers) {
+    if (!_.isArray(layers)) res.status(404).json({ message: 'Invalid "layers" property' })
+    else next()
+  } else {
+    next()
+  }
+}
+
+// size validator
+const sizeValidator = function (req, res, next) {
+  const width = _.get(req.body, 'size.width')
+  const height = _.get(req.body, 'size.height')
+  if (width || height) {
+    if (width < 256 || width > 5000 || height < 256 || height > 5000) res.status(404).json({ message: 'Invalid "size" property' })
+    else next()
+  } else {
+    next()
+  }
+}
+
+// features validator middleware
+const geoJsonValidator = function (req, res, next) {
+  if (req.body.type === 'FeatureCollection' || req.body.type === 'Feature') {
+    const errors = validateGeoJson(req.body)
+    if (errors.length > 0) res.status(422).json({ message: 'Invalid "GeoJSON"', errors })
+    else next()
+  } else {
+    next()
+  }
+}
+
+export async function createServer () {
+  // Initialize express app
+  const app = express()
+  app.use(cors()) // enable cors
+  app.use(express.urlencoded({ limit: bodyLimit, extended: true }))
+  app.use(express.json({ limit: bodyLimit }))
+
+  // Capture
+  app.post('/capture', [layersValidator, sizeValidator, geoJsonValidator], async (req, res) => {
+    const start = new Date()
+    const buffer = await capture(_.defaults(req.body, { url: appUrl, jwt: appJwt, delay, pageSetupDelay, uploadFileDelay, networkdIdleTimeout, appName }))
+    if (Buffer.isBuffer(Buffer.from(buffer))) {
+      res.contentType('image/png')
+      res.send(Buffer.from(buffer))
+      const duration = new Date() - start
+      logger.info(`Capture processed in ${duration}ms`)
+    } else {
+      res.status(500).json({ message: 'Internal service error' })
+    }
+  })
+
+  // Healthcheck
+  app.get('/healthcheck', (req, res) => {
+    res.set('Content-Type', 'application/json')
+    return res.status(200).json({ isRunning: true })
+  })
+
+  // Serve the app
+  const server = await app.listen(port)
+  logger.info(`[KAPTURE] server listening at ${port} (body limit ${bodyLimit}, delay ${delay}, network idle timeout ${networkdIdleTimeout})`)
+  return server
+}

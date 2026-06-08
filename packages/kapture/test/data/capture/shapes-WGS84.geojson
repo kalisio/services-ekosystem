@@ -1,0 +1,30 @@
+{
+  "type": "FeatureCollection",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    { 
+      "type": "Feature", 
+      "geometry": { 
+        "type": "Point", 
+        "coordinates": [3, 42.5]
+      },
+      "properties": { "fill-color": "#AAAAAA" } 
+    },
+    { 
+      "type": "Feature", 
+      "geometry": { 
+        "type": "LineString", 
+        "coordinates": [ [3, 42], [4, 43], [5,42], [6, 43]] 
+      },
+      "properties": { "fill-color": "#AAAAAA" } 
+    },
+    { 
+      "type": "Feature", 
+      "geometry": { 
+        "type": "Polygon", 
+        "coordinates": [ [ [0, 42], [1, 42], [1, 43], [0, 43], [0, 42] ] ] 
+      }, 
+      "properties": { "fill-color": "#AAAAAA" } 
+    }
+  ]
+}

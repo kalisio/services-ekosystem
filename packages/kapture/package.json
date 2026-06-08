@@ -1,0 +1,58 @@
+{
+  "name": "@kalisio/kapture",
+  "description": "Capture Kano Snapshots as a Service",
+  "version": "1.6.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  },
+  "scripts": {
+    "build": "vite build",
+    "postbuild": "publint",
+    "lint": "standard --fix",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "kalisio"
+  ],
+  "author": {
+    "name": "KALISIO <contact@kalisio.com>",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalisio/services-ekosystem.git",
+    "directory": "packages/kapture"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/services-ekosystem/issues"
+  },
+  "homepage": "https://github.com/kalisio/services-ekosystem/tree/master/packages/kapture",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
+  }
+}
