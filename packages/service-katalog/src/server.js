@@ -1,10 +1,10 @@
-import { kdk } from '@kalisio/kdk-core-api'
 import express from '@feathersjs/express'
 import distribution, { finalize } from '@kalisio/feathers-distributed'
+import { kdk } from '@kalisio/kdk-core-api'
+import { createCatalogService, createDefaultCatalogLayers, createCatalogFeaturesServices } from '@kalisio/kdk-map-api'
 import { logger } from './logger.js'
-import { services } from './services/index.js'
 import { loadLayers, loadCategories, loadSublegends } from './layers.js'
-import { createDefaultCatalogLayers, createCatalogFeaturesServices } from '@kalisio/kdk-map-api'
+
 const { notFound, errorHandler } = express
 
 export class Server {
@@ -35,7 +35,7 @@ export class Server {
     const sublegends = await loadSublegends(this.app)
     this.app.set('catalog', Object.assign({}, this.app.get('catalog'), { layers, categories, sublegends }))
 
-    await services(this.app)
+    await createCatalogService.call(this.app)
     await createDefaultCatalogLayers.call(this.app)
     await createCatalogFeaturesServices.call(this.app)
     const server = await this.app.listen(port)
