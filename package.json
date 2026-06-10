@@ -17,12 +17,19 @@
     "lint": "pnpm -r lint",
     "lint:service-kapture": "pnpm --filter @kalisio/service-kapture lint",
     "lint:katalog": "pnpm --filter @kalisio/katalog lint",
+    "lint:service-geokoder": "pnpm --filter @kalisio/service-geokoder lint",
     "posttest": "pnpm lcov-result-merger --prepend-source-files 'packages/*/coverage/lcov.info' coverage/lcov.info",
     "prepare": "husky",
     "pretest": "mkdir -p coverage",
     "test": "pnpm -r test",
+<<<<<<< HEAD
     "test:service-kapture": "pnpm --filter @kalisio/service-kapture test",
     "test:katalog": "pnpm --filter @kalisio/katalog test"
+=======
+    "test:kapture": "pnpm --filter @kalisio/kapture test",
+    "test:katalog": "pnpm --filter @kalisio/katalog test",
+    "test:service-geokoder": "pnpm --filter @kalisio/service-geokoder test"
+>>>>>>> 3ca95c9 (wip: Migrate geokoder to this monorepo)
   },
   "keywords": [
     "kalisio"
@@ -44,18 +51,28 @@
   "devDependencies": {
     "@changesets/cli": "catalog:",
     "@vitest/coverage-v8": "catalog:",
-    "cross-env": "catalog:",
     "husky": "catalog:",
+    "is-docker": "catalog:",
+    "knip": "catalog:",
     "lcov-result-merger": "catalog:",
     "lint-staged": "catalog:",
     "standard": "catalog:",
     "vite": "catalog:",
     "vite-bundle-visualizer": "catalog:",
-    "knip": "catalog:",
     "vitest": "catalog:"
   },
   "metaCatalog": {
     "version": "0.10.0",
+<<<<<<< HEAD
     "syncedAt": "2026-06-10T14:26:03.484Z"
+=======
+    "syncedAt": "2026-06-10T14:59:13.203Z"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sqlite3",
+      "@mapbox/vtquery"
+    ]
+>>>>>>> 3ca95c9 (wip: Migrate geokoder to this monorepo)
   }
 }

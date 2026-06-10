@@ -1,0 +1,85 @@
+{
+  "name": "@kalisio/service-geokoder",
+  "description": "Lightweight geocoder service providing forward and reverse geocoding",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  },
+  "scripts": {
+    "build": "vite build",
+    "postbuild": "publint",
+    "dev": "node --watch src/index.js",
+    "lint": "standard --fix",
+    "test": "vitest run --coverage"
+  },
+  "keywords": [
+    "kalisio"
+  ],
+  "author": {
+    "name": "Kalisio",
+    "email": "contact@kalisio.com",
+    "url": "https://github.com/kalisio"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalisio/services-ekosystem.git",
+    "directory": "packages/service-geokoder"
+  },
+  "bugs": {
+    "url": "https://github.com/kalisio/services-ekosystem/issues"
+  },
+  "homepage": "https://github.com/kalisio/services-ekosystem/tree/master/packages/service-geokoder",
+  "dependencies": {
+    "@feathersjs/commons": "catalog:",
+    "@feathersjs/configuration": "catalog:",
+    "@feathersjs/express": "catalog:",
+    "@feathersjs/errors": "catalog:",
+    "@feathersjs/feathers": "catalog:",
+    "@kalisio/feathers-distributed": "catalog:",
+    "@kalisio/kdk-core-api": "link:../../../kdk-ekosystem/packages/kdk-core-api",
+    "@kalisio/kdk-map-api": "link:../../../kdk-ekosystem/packages/kdk-map-api",
+    "@mapbox/mbtiles": "catalog:",
+    "@mapbox/vtquery": "catalog:",
+    "@turf/distance": "catalog:",
+    "@turf/point-to-line-distance": "catalog:",
+    "@turf/point-to-polygon-distance": "catalog:",
+    "cors": "catalog:",
+    "debug": "catalog:",
+    "feathers-hooks-common": "catalog:",
+    "fs-extra": "catalog:",
+    "glob": "catalog:",
+    "lodash": "catalog:",
+    "minimatch": "catalog:",
+    "node-geocoder": "catalog:",
+    "winston": "catalog:",
+    "winston-daily-rotate-file": "catalog:",
+    "zlib": "catalog:"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs"
+      }
+    }
+  }
+}

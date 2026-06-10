@@ -1,4 +1,9 @@
 [
   "katalog",
+<<<<<<< HEAD
   "service-kapture"
+=======
+  "kapture",
+  "service-geokoder"
+>>>>>>> 3ca95c9 (wip: Migrate geokoder to this monorepo)
 ]

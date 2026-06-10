@@ -47,6 +47,8 @@ catalog:
   "@kalisio/feathers-webpush": ~1.0.1
   "@kalisio/kdk": ~2.7.0
   "@logtape/logtape": ~0.7.0
+  "@mapbox/mbtiles": ~0.12.1
+  "@mapbox/vtquery": ~0.6.0
   "@pdfme/common": ~6.1.2
   "@pdfme/generator": ~6.1.2
   "@pdfme/schemas": ~6.1.2
@@ -61,6 +63,10 @@ catalog:
   "@turf/boolean-clockwise": ~7.3.5
   "@turf/center-of-mass": ~7.3.5
   "@turf/clean-coords": ~7.3.5
+<<<<<<< HEAD
+=======
+  "@turf/distance": ~7.3.5
+>>>>>>> 3ca95c9 (wip: Migrate geokoder to this monorepo)
   "@turf/envelope": ~7.3.5
   "@turf/flatten": ~7.3.5
   "@turf/helpers": ~7.3.5
@@ -68,6 +74,11 @@ catalog:
   "@turf/invariant": ~7.3.5
   "@turf/kinks": ~7.3.5
   "@turf/meta": ~7.3.5
+<<<<<<< HEAD
+=======
+  "@turf/point-to-line-distance": ~7.3.5
+  "@turf/point-to-polygon-distance": ~7.3.5
+>>>>>>> 3ca95c9 (wip: Migrate geokoder to this monorepo)
   "@turf/truncate": ~7.3.5
   "@vitejs/plugin-vue": ~6.0.4
   "@vitest/coverage-v8": ~4.1.4
@@ -132,10 +143,12 @@ catalog:
   lru-cache: ~11.3.5
   mathjs: ~15.1.1
   mermaid: ~10.8.0
+  minimatch: ^9.0.3
   moment: ~2.30.1
   moment-timezone: ~0.6.0
   mongodb: ~6.20.0
   nock: ~14.0.13
+  node-geocoder: git+https://github.com/nchaulet/node-geocoder.git#f66ea8db928d780b5d4268938909f86fba503eef
   nodemailer: ~6.9.8
   papaparse: ~5.5.3
   password-generator: ~2.3.2
@@ -187,3 +200,4 @@ catalog:
   workbox-routing: ~7.0.0
   workbox-strategies: ~7.0.0
   xml2js: ~0.6.2
+  zlib: ~1.0.5
