@@ -28,7 +28,7 @@ init_github_detect_services() {
 }
 
 init_github_build_services() {
-    install_reqs age sops
+    install_reqs age sops nvm node20
 }
 
 init_github_release_services() {
