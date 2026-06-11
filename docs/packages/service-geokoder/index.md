@@ -157,3 +157,14 @@ module.exports = {
   }
 }
 ```
+
+### Environment variables
+
+Here are the environment variables you can use to customize the service:
+
+| Variable  | Description | Defaults |
+|-----------| ------------| ------------|
+| `PORT` | The port to be used when exposing the service |  `8080` |
+| `HOSTNAME` | The hostname to be used when exposing the service | `localhost` |
+| `API_PATH` | The path to the API |
+| `API_URL` | The url used when exposing the service | `localhost:8080/api` |
