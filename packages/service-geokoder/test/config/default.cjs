@@ -4,8 +4,6 @@ const isDocker = require('is-docker')
 // Use default service config
 const config = require(path.join(__dirname, '../..', 'config/default.cjs'))
 
-// Override the baseUrl
-config.baseUrl = 'http://localhost:8187/api'
 // Simply changes outputs so we don't pollute logs, etc.
 config.logs.DailyRotateFile.dirname = path.join(__dirname, '..', 'logs')
 // Use cote defaults to speedup tests

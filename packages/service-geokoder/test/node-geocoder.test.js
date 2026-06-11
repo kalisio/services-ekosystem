@@ -38,14 +38,14 @@ describe('geokoder:node-geocoder', () => {
   }, 10000)
 
   it('node geocoder sources appear in capabilities', async () => {
-    const baseUrl = app.get('baseUrl')
-    let response = await fetch(`${baseUrl}/capabilities/forward`)
+    const apiUrl = app.get('apiUrl')
+    let response = await fetch(`${apiUrl}/capabilities/forward`)
     let body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('openstreetmap')).toBe(true)
     expect(body.geocoders.includes('opendatafrance')).toBe(true)
 
-    response = await fetch(`${baseUrl}/capabilities/reverse`)
+    response = await fetch(`${apiUrl}/capabilities/reverse`)
     body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('openstreetmap')).toBe(true)
@@ -53,11 +53,11 @@ describe('geokoder:node-geocoder', () => {
   }, 10000)
 
   it('forward geocoding on node geocoder sources', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const search of searches) {
       const params = [`q=${search.pattern}`, `sources=${search.sources}`, 'limit=2']
       if (search.viewbox) params.push(`viewbox=${search.viewbox}`)
-      const response = await fetch(`${baseUrl}/forward?${params.join('&')}`)
+      const response = await fetch(`${apiUrl}/forward?${params.join('&')}`)
       const body = await response.json()
       expect(body.length).toBe(search.results.length)
       body.forEach((feature, index) => {
@@ -68,9 +68,9 @@ describe('geokoder:node-geocoder', () => {
   }, 10000)
 
   it('reverse geocoding on node geocoder sources', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const location of locations) {
-      const response = await fetch(`${baseUrl}/reverse?lat=${location.lat}&lon=${location.lon}&limit=2&sources=${location.sources}`)
+      const response = await fetch(`${apiUrl}/reverse?lat=${location.lat}&lon=${location.lon}&limit=2&sources=${location.sources}`)
       const body = await response.json()
       expect(body.length).toBe(location.results.length)
       body.forEach((feature, index) => {

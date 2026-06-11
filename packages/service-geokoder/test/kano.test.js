@@ -90,15 +90,15 @@ describe('geokoder:kano', () => {
   }, 15000)
 
   it('only allowed kano sources from catalog appear in capabilities', async () => {
-    const baseUrl = app.get('baseUrl')
-    let response = await fetch(`${baseUrl}/capabilities/forward`)
+    const apiUrl = app.get('apiUrl')
+    let response = await fetch(`${apiUrl}/capabilities/forward`)
     let body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('kano:teleray-stations')).toBe(true)
     expect(body.geocoders.includes('kano:rte-units')).toBe(true)
     expect(body.geocoders.includes('kano:filtered-units')).toBe(false)
 
-    response = await fetch(`${baseUrl}/capabilities/reverse`)
+    response = await fetch(`${apiUrl}/capabilities/reverse`)
     body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('kano:teleray-stations')).toBe(true)
@@ -107,8 +107,8 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   it('kano provider should not expose duplicate sources', async () => {
-    const baseUrl = app.get('baseUrl')
-    let response = await fetch(`${baseUrl}/capabilities/forward`)
+    const apiUrl = app.get('apiUrl')
+    let response = await fetch(`${apiUrl}/capabilities/forward`)
     let body = await response.json()
     expect(body.geocoders).toBeDefined()
     let seen = new Set()
@@ -118,7 +118,7 @@ describe('geokoder:kano', () => {
       seen.add(src)
     })
 
-    response = await fetch(`${baseUrl}/capabilities/reverse`)
+    response = await fetch(`${apiUrl}/capabilities/reverse`)
     body = await response.json()
     expect(body.geocoders).toBeDefined()
     seen = new Set()
@@ -130,11 +130,11 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   it('forward geocoding on kano sources from catalog', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const search of searches) {
       const params = [`q=${search.pattern}`, `sources=${search.sources}`]
       if (search.viewbox) params.push(`viewbox=${search.viewbox}`)
-      const response = await fetch(`${baseUrl}/forward?${params.join('&')}`)
+      const response = await fetch(`${apiUrl}/forward?${params.join('&')}`)
       const body = await response.json()
       expect(body.length).toBe(search.results.length)
       body.forEach((feature, index) => {
@@ -144,9 +144,9 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   it('reverse geocoding on kano sources from catalog', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const location of locations) {
-      const response = await fetch(`${baseUrl}/reverse?lat=${location.lat}&lon=${location.lon}&distance=${location.distance}&sources=${location.sources}`)
+      const response = await fetch(`${apiUrl}/reverse?lat=${location.lat}&lon=${location.lon}&distance=${location.distance}&sources=${location.sources}`)
       const body = await response.json()
       expect(body.length).toBe(location.results.length)
       body.forEach((feature, index) => {
@@ -161,14 +161,14 @@ describe('geokoder:kano', () => {
     catalogService = kapp.getService('catalog')
     expect(catalogService).toBeNull()
 
-    const baseUrl = app.get('baseUrl')
-    let response = await fetch(`${baseUrl}/capabilities/forward`)
+    const apiUrl = app.get('apiUrl')
+    let response = await fetch(`${apiUrl}/capabilities/forward`)
     let body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('services:teleray-stations')).toBe(true)
     expect(body.geocoders.includes('services:rte-units')).toBe(true)
 
-    response = await fetch(`${baseUrl}/capabilities/reverse`)
+    response = await fetch(`${apiUrl}/capabilities/reverse`)
     body = await response.json()
     expect(body.geocoders).toBeDefined()
     expect(body.geocoders.includes('services:teleray-stations')).toBe(true)
@@ -176,11 +176,11 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   it('forward geocoding on kano sources from services', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const search of searches) {
       const params = [`q=${search.pattern}`, `sources=${search.sources.replace('kano', 'services')}`]
       if (search.viewbox) params.push(`viewbox=${search.viewbox}`)
-      const response = await fetch(`${baseUrl}/forward?${params.join('&')}`)
+      const response = await fetch(`${apiUrl}/forward?${params.join('&')}`)
       const body = await response.json()
       expect(body.length).toBe(search.results.length)
       body.forEach((feature, index) => {
@@ -190,9 +190,9 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   it('reverse geocoding on kano sources from services', async () => {
-    const baseUrl = app.get('baseUrl')
+    const apiUrl = app.get('apiUrl')
     for (const location of locations) {
-      const response = await fetch(`${baseUrl}/reverse?lat=${location.lat}&lon=${location.lon}&distance=${location.distance}&sources=${location.sources.replace('kano', 'services')}`)
+      const response = await fetch(`${apiUrl}/reverse?lat=${location.lat}&lon=${location.lon}&distance=${location.distance}&sources=${location.sources.replace('kano', 'services')}`)
       const body = await response.json()
       expect(body.length).toBe(location.results.length)
       body.forEach((feature, index) => {
