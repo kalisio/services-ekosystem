@@ -202,7 +202,7 @@ describe('geokoder:kano', () => {
   }, 10000)
 
   afterAll(async () => {
-    await new Promise((resolve, reject) => server.close(err => err ? reject(err) : resolve()))
+    await app.teardown()
     const logsDir = path.join(__dirname, 'logs')
     for (const file of fs.readdirSync(logsDir)) {
       fs.rmSync(path.join(logsDir, file), { recursive: true, force: true })
